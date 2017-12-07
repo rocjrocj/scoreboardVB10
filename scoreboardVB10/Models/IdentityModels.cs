@@ -29,5 +29,7 @@ namespace scoreboardVB10.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<scoreboardVB10.Models.ScoreboardVBModels> ScoreboardVBModels { get; set; }
     }
 }

@@ -1,0 +1,49 @@
+﻿@model scoreboardVB10.Models.ScoreboardVBModels
+
+@{
+    ViewBag.Title = "KeepScore";
+}
+
+<h2>Keep Score</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"><h3>Home Score</h3></div>
+        <div class="col-md-4" id="HomeScore">@Html.DisplayFor(model => model.HomeTeamScore)</div>
+        <div class="col-md-4"><button id="HomeScoreMinus">-</button> <button id="HomeScorePlus" onclick="javascript: doScorePlus(this.getElementById)">+</button></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"><h3>Guest Score</h3></div>
+        <div class="col-md-4" id="GuestScore">@Html.DisplayFor(model => model.GuestTeamScore)</div>
+        <div class="col-md-4"><button>-</button> <button id="GuestScorePlus" onclick="javascript:doScorePlus('Guest')">+</button></div>
+    </div>
+</div>
+
+<script>
+
+    function doHomeScorePlus() {
+        var dHomeScore = document.getElementById("HomeScore");
+        console.log("dHomeScore: " + dHomeScore);
+        //var currentHomeScore = 0;
+        var currentHomeScore = dHomeScore.innerText;
+        console.log("currentHomeScore: " + currentHomeScore);
+        var newHomeScore = ++currentHomeScore;
+        console.log("newHomeScore: " + newHomeScore);
+        dHomeScore.innerText = newHomeScore;
+        console.log("newHomeScore2: " + newHomeScore);
+    };
+
+    function doScorePlus(team) {
+        console.log("team:" + team)
+        var dHomeScore = document.getElementById("HomeScore");
+        console.log("dHomeScore: " + dHomeScore);
+        //var currentHomeScore = 0;
+        var currentHomeScore = dHomeScore.innerText;
+        console.log("currentHomeScore: " + currentHomeScore);
+        var newHomeScore = ++currentHomeScore;
+        console.log("newHomeScore: " + newHomeScore);
+        dHomeScore.innerText = newHomeScore;
+        console.log("newHomeScore2: " + newHomeScore);
+    };
+
+</script>
