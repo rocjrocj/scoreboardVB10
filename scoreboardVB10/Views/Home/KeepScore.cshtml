@@ -10,14 +10,16 @@
     <div class="row">
         <div class="col-md-4"><h3>Home Score</h3></div>
         <div class="col-md-4" id="HomeScore">@Html.DisplayFor(model => model.HomeTeamScore)</div>
-        <div class="col-md-4"><button id="HomeScoreMinus">-</button> <button id="HomeScorePlus" onclick="javascript: doScorePlus(this.getElementById)">+</button></div>
+        <div class="col-md-4"><button id="HomeScoreMinus" onclick="javascript:doScore('HomeScore', 'm')">-</button> <button id="HomeScorePlus" onclick="javascript: doScore('HomeScore', 'p')">+</button></div>
     </div>
     <div class="row">
         <div class="col-md-4"><h3>Guest Score</h3></div>
         <div class="col-md-4" id="GuestScore">@Html.DisplayFor(model => model.GuestTeamScore)</div>
-        <div class="col-md-4"><button>-</button> <button id="GuestScorePlus" onclick="javascript:doScorePlus('Guest')">+</button></div>
+        <div class="col-md-4"><button id="GuestScoreMinus" onclick="javascript:doScore('GuestScore', 'm')">-</button> <button id="GuestScorePlus" onclick="javascript:doScore('GuestScore', 'p')">+</button></div>
     </div>
+    <div><h4 id="scoreVB"></h4></div>
 </div>
+
 
 <script>
 
@@ -35,7 +37,7 @@
 
     function doScorePlus(team) {
         console.log("team:" + team)
-        var dHomeScore = document.getElementById("HomeScore");
+        var dHomeScore = document.getElementById(team);
         console.log("dHomeScore: " + dHomeScore);
         //var currentHomeScore = 0;
         var currentHomeScore = dHomeScore.innerText;
@@ -46,4 +48,38 @@
         console.log("newHomeScore2: " + newHomeScore);
     };
 
+    function doScore(team, action) {
+        console.log("team:" + team)
+        console.log("action:" + action)
+        var dHomeScore = document.getElementById(team);
+        console.log("dHomeScore: " + dHomeScore);
+        //var currentHomeScore = 0;
+        var currentHomeScore = dHomeScore.innerText;
+        console.log("currentHomeScore: " + currentHomeScore);
+
+        if (action == "p") {
+            var newHomeScore = ++currentHomeScore;
+        } else {
+            var newHomeScore = --currentHomeScore;
+        }
+        console.log("newHomeScore: " + newHomeScore);
+        dHomeScore.innerText = newHomeScore;
+        console.log("newHomeScore2: " + newHomeScore);
+    };
+
 </script>
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        var simple = $.connection.simpleHub;
+        //simple.client.add
+        simple.client.introduce = function (introduction) {
+            alert(introduction);
+            $('#scoreVB').text(introduction);
+        }
+        $.connection.hub.start().done(function () {
+            simple.server.hello();
+        });
+    </script>
+}
