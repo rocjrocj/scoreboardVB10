@@ -9,11 +9,12 @@ namespace scoreboardVB10
 {
     public class SimpleHub : Hub
     {
-        private static int _scoreVB = 0;
-        public void Hello()
+        //private static int _scoreVB = 0;
+        public void SendMessage(string message)
         {
-            _scoreVB += 1;
-            Clients.All.introduce(_scoreVB);
+            //_scoreVB += 1;
+            //Clients.All.introduce(_scoreVB);
+            Clients.All.showMessage(message);
         }
     }
 }

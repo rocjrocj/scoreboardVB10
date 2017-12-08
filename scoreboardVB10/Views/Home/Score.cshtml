@@ -6,6 +6,17 @@
 
 <h2>Score</h2>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-6"><h3>Home Score</h3></div>
+        <div class="col-md-6" id="HomeScore">@Html.DisplayFor(model => model.HomeTeamScore)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6"><h3>Guest Score</h3></div>
+        <div class="col-md-6" id="GuestScore">@Html.DisplayFor(model => model.GuestTeamScore)</div>
+    </div>
+</div>
+
 <div>
     <h4>ScoreboardVBModels</h4>
     <hr />
@@ -96,3 +107,16 @@
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")*@
 </p>
+
+
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.0.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        var liveHelp = $.connection.liveHelpHub;
+        liveHelp.client.showMessage = function (message) {
+            $('#liveHelp').append('<li>' + username + ': ' + message + '</li>');
+        };
+    </script>
+}

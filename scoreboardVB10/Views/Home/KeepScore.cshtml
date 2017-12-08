@@ -75,7 +75,7 @@
         var simple = $.connection.simpleHub;
         //simple.client.add
         simple.client.introduce = function (introduction) {
-            alert(introduction);
+            //alert(introduction);
             $('#scoreVB').text(introduction);
         }
         $.connection.hub.start().done(function () {
