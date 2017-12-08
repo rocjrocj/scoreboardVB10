@@ -111,12 +111,29 @@
 
 
 @section scripts {
-    <script src="~/Scripts/jquery.signalR-2.0.0.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
     <script src="~/signalr/hubs"></script>
     <script>
-        var liveHelp = $.connection.liveHelpHub;
-        liveHelp.client.showMessage = function (message) {
-            $('#liveHelp').append('<li>' + username + ': ' + message + '</li>');
+        var simple = $.connection.simpleHub;
+        
+        simple.client.showMessage = function (message) {
+            alert(message);
+            $('#HomeScore').text(message);
+            $('#GuestScore').text(message);
         };
+        $.connection.hub.start().done(function () {
+            //var arrUrl = window.location.href.split('/');
+            //console.log("url: " + arrUrl.pop());
+            //simple.server.joinGroup(arrUrl);
+            //simple.server.sendMessage("help me");
+            simple.server.sendMessage("this sucks");
+        });
+
+        //simple.server.
+
+        //simple.s
+
+        //eventHub.server.joinGroup("my-awsm-group");
+        //$.connection.simpleHub.
     </script>
 }
