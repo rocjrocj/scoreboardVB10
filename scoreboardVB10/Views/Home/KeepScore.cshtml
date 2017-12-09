@@ -10,12 +10,12 @@
     <div class="row">
         <div class="col-md-4"><h3>Home Score</h3></div>
         <div class="col-md-4" id="HomeScore">@Html.DisplayFor(model => model.HomeTeamScore)</div>
-        <div class="col-md-4"><button id="HomeScoreMinus" onclick="javascript:doScore('HomeScore', 'm')">-</button> <button id="HomeScorePlus">+</button>@*<button id="HomeScorePlus" onclick="javascript: doScore('HomeScore', 'p')">+</button>*@</div>
+        <div class="col-md-4"><button id="HomeScoreMinus">-</button> <button id="HomeScorePlus">+</button>@*<button id="HomeScorePlus" onclick="javascript: doScore('HomeScore', 'p')">+</button>*@</div>
     </div>
     <div class="row">
         <div class="col-md-4"><h3>Guest Score</h3></div>
         <div class="col-md-4" id="GuestScore">@Html.DisplayFor(model => model.GuestTeamScore)</div>
-        <div class="col-md-4"><button id="GuestScoreMinus" onclick="javascript:doScore('GuestScore', 'm')">-</button> <button id="GuestScorePlus" onclick="javascript:doScore('GuestScore', 'p')">+</button></div>
+        <div class="col-md-4"><button id="GuestScoreMinus">-</button> <button id="GuestScorePlus">+</button></div>
     </div>
     <div><h4 id="scoreVB"></h4></div>
 </div>
@@ -77,22 +77,57 @@
             console.log(message);
             $('#scoreVB').text(message);
         }
+
+        //var message = $('#HomeScore').text();
+        //var team;
+
         $.connection.hub.start().done(function () {
             //simple.server.showMessage(message);
+            var arrUrl = window.location.href.split('/');
+            var room = "room" + arrUrl.pop();
+            console.log(room);
+            simple.server.joinRoom(room);
+
             $('#HomeScorePlus').click(function () {
-                var message = $('#HomeScore').val();
-                message = "Holiday Party";
-                console.log("message:" + message);
-                simple.server.sendMessage(message);
-                //$('#message').val('');
+                console.log("#HomeScorePlus was clicked.");
+                var message = $('#HomeScore').text();
+                message = Number(++message);
+                var team = "home";
+                $('#HomeScore').text(message);
+                console.log("message: " + message);
+                simple.server.sendMessage(message, team, room);
+            });
+
+            $('#HomeScoreMinus').click(function () {
+                console.log("#HomeScoreMinus was clicked.");
+                var message = $('#HomeScore').text();
+                message = Number(--message);
+                var team = "home";
+                $('#HomeScore').text(message);
+                console.log("message: " + message);
+                simple.server.sendMessage(message, team, room);
+            });
+
+            $('#GuestScorePlus').click(function () {
+                console.log("#GuestScorePlus was clicked.");
+                var message = $('#GuestScore').text();
+                message = Number(++message);
+                var team = "guest";
+                $('#GuestScore').text(message);
+                console.log("message: " + message);
+                simple.server.sendMessage(message, team, room);
+            });
+
+            $('#GuestScoreMinus').click(function () {
+                console.log("#GuestScoreMinus was clicked.");
+                var message = $('#GuestScore').text();
+                message = Number(--message);
+                var team = "guest";
+                $('#GuestScore').text(message);
+                console.log("message: " + message);
+                simple.server.sendMessage(message, team, room);
             });
         });
-
-        //$.connection.hub.start().done(function () {
-        //    $('#send').click(function () {
-        //        liveHelp.server.sendMessage($('#username').val(), $('#message').val());
-        //        $('#message').val('');
-        //    });
         //});
 
 

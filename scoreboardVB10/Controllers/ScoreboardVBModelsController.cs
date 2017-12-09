@@ -89,6 +89,35 @@ namespace scoreboardVB10.Controllers
             return View(scoreboardVBModels);
         }
 
+
+
+
+
+
+
+        // POST: ScoreboardVBModels/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "Id,HomeTeamScore")] ScoreboardVBModels scoreboardVBModels)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(scoreboardVBModels).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(scoreboardVBModels);
+        //}
+
+
+
+
+
+
+
+
         // GET: ScoreboardVBModels/Delete/5
         public ActionResult Delete(int? id)
         {

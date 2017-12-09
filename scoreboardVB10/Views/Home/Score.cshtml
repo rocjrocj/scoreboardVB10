@@ -116,17 +116,28 @@
     <script>
         var simple = $.connection.simpleHub;
         
-        simple.client.showMessage = function (message) {
-            alert(message);
-            $('#HomeScore').text(message);
-            $('#GuestScore').text(message);
+        simple.client.showMessage = function (message, team) {
+            //alert(message);
+            if (team == "home") {
+                $('#HomeScore').text(message);
+            } else {
+                $('#GuestScore').text(message);
+            }
         };
+
+        simple.client.addChatMessage = function (message) {
+            alert(message);
+            console.log(message);
+        };
+
         $.connection.hub.start().done(function () {
-            //var arrUrl = window.location.href.split('/');
-            //console.log("url: " + arrUrl.pop());
-            //simple.server.joinGroup(arrUrl);
+            var arrUrl = window.location.href.split('/');
+            var room = "room" + arrUrl.pop();
+            console.log(room);
+            //simple.server.joinGroup(arrUrl.pop());
             //simple.server.sendMessage("help me");
             simple.server.sendMessage("this sucks");
+            simple.server.joinRoom(room);
         });
 
         //simple.server.
