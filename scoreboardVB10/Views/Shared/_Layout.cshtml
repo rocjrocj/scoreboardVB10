@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/css")
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+        @Styles.Render("~/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -39,6 +42,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/mdb")
     @RenderSection("scripts", required: false)
     @*<script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
     <script type="text/javascript">

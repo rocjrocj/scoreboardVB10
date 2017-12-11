@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
+using System.Data.Entity;
 
 namespace scoreboardVB10.Controllers
 {
@@ -32,6 +33,13 @@ namespace scoreboardVB10.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult HomeTest()
+        {
+            ViewBag.Message = "Your HomeTest page.";
+
+            return View(db.ScoreboardVBModels.ToList());
         }
 
         // GET: Home/Score/5

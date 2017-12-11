@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv=”Pragma” content=”no-cache”>
+	<meta http-equiv=”Expires” content=”-1″>
+	<meta http-equiv=”CACHE-CONTROL” content=”NO-CACHE”>
+	<title>scoreboardV</title>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+	<!-- Bootstrap core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="css/mdb.min.css" rel="stylesheet">
+	<!-- Your custom styles (optional) -->
+	<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+	<!-- Start your project here-->
+	<div class="container mt-4">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>Home: <span id="homeScoreDisplay"></span></h1>
+			</div>
+			<div class="col-md-6">
+				<h1>Guest: <span id="guestScoreDisplay"></span></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="pt-2">
+					<li>Home Team:
+						<span id="homeTeam"></span>
+					</li>
+					<li>Guest Team:
+						<span id="guestTeam"></span>
+					</li>
+					<li>Set:
+						<span id="set"></span>
+					</li>
+					<li>Set 1 Winner:
+						<span id="set1Winner"></span>
+					</li>
+					<li>Set 2 Winner:
+						<span id="set2Winner"></span>
+					</li>
+					<li>Set 3 Winner:
+						<span id="set3Winner"></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- admin -->
+	<div class="container mt-4">
+		<div class="row">
+			<div class="col-md-12">
+				<form>
+					<div class="mb-2">
+						<h3>Home Score:&nbsp;&nbsp; <a href="" id="bHomeMinus"><i class="fa fa-minus-circle" aria-hidden="true"></i></a> &nbsp;<span id="homeScore"></span>&nbsp; <a href="" id="bHomePlus"><i class="fa fa-plus-circle fa-2xz" aria-hidden="true"></i></a></h3>
+						<h3>Guest Score:&nbsp;&nbsp; <a href="" id="bGuestMinus"><i class="fa fa-minus-circle" aria-hidden="true"></i></a> &nbsp;<span id="guestScore"></span>&nbsp; <a href="" id="bGuestPlus"><i class="fa fa-plus-circle fa-2xz" aria-hidden="true"></i></a></h3>
+						<div id="jSuccess"></div>
+						<button type="button" id="bResetScoreV" class="btn btn-default">Reset Score</button>
+					</div>
+					<div>Set #:</div>
+					<div class="form-inline">
+						<fieldset class="form-group">
+							<input name="rSet" type="radio" class="with-gap" id="rSet1" value="1">
+							<label for="rSet1">Set 1</label>
+						</fieldset>
+						<fieldset class="form-group">
+							<input name="rSet" type="radio" class="with-gap" id="rSet2" value="2">
+							<label for="rSet2">Set 2</label>
+						</fieldset>
+						<fieldset class="form-group">
+							<input name="rSet" type="radio" class="with-gap" id="rSet3" value="3">
+							<label for="rSet3">Set 3</label>
+						</fieldset>
+					</div>
+					<div>Set 1 Winner:</div>
+					<div class="form-inline">
+						<fieldset class="form-group">
+							<input name="rSet1Winner" type="radio" class="with-gap" id="rSet1WinnerHome" value="Home">
+							<label for="rSet1WinnerHome">Home</label>
+						</fieldset>
+						<fieldset class="form-group">
+							<input name="rSet1Winner" type="radio" class="with-gap" id="rSet1WinnerGuest" value="Guest">
+							<label for="rSet1WinnerGuest">Guest</label>
+						</fieldset>
+						<fieldset class="form-group">
+							<input name="rSet1Winner" type="radio" class="with-gap" id="rSet1WinnerNone" value="None">
+							<label for="rSet1WinnerNone">None</label>
+						</fieldset>
+					</div>
+					<div>Set 2 Winner:</div>
+					<div class="form-inline">
+						<fieldset class="form-group">
+							<input name="rSet2Winner" type="radio" class="with-gap" id="rSet2WinnerHome" value="Home">
+							<label for="rSet2WinnerHome">Home</label>
+						</fieldset>
+						<fieldset class="form-group">
+							<input name="rSet2Winner" type="radio" class="with-gap" id="rSet2WinnerGuest" value="Guest">
+							<label for="rSet2WinnerGuest">Guest</label>
+						</fieldset>
+						<fieldset class="form-group">
+							<input name="rSet2Winner" type="radio" class="with-gap" id="rSet2WinnerNone" value="None">
+							<label for="rSet2WinnerNone">None</label>
+						</fieldset>
+					</div>
+					<div>Set 3 Winner:</div>
+					<div class="form-inline mb-1">
+						<fieldset class="form-group">
+							<input name="rSet3Winner" type="radio" class="with-gap" id="rSet3WinnerHome" value="Home">
+							<label for="rSet3WinnerHome">Home</label>
+						</fieldset>
+						<fieldset class="form-group">
+							<input name="rSet3Winner" type="radio" class="with-gap" id="rSet3WinnerGuest" value="Guest">
+							<label for="rSet3WinnerGuest">Guest</label>
+						</fieldset>
+						<fieldset class="form-group">
+							<input name="rSet3Winner" type="radio" class="with-gap" id="rSet3WinnerNone" value="None">
+							<label for="rSet3WinnerNone">None</label>
+						</fieldset>
+					</div>
+					<div>
+						<button type="button" id="bResetMatchV" class="btn btn-default mb-3">Reset Match Info</button>
+					</div>
+					<div class="md-form mb-2">
+						<input type="text" id="tHomeTeam" name="tHomeTeam" class="form-control" value="">
+						<label for="tHomeTeam" class="">Home Team Name</label>
+					</div>
+					<div class="md-form">
+						<input type="text" id="tGuestTeam" name="tGuestTeam" class="form-control" value="">
+						<label for="tGuestTeam" class="">Guest Team Name</label>
+					</div>
+					<div>
+						<button type="button" id="bResetTeamsV" class="btn btn-default">Reset Teams</button>
+					</div>
+					<div class="mb-3">
+						<button type="button" id="bSaveV" class="btn btn-primary">Save</button>
+						<button type="button" id="bResetAllV" class="btn btn-default">Reset All</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- /.Start your project here-->
+	<!-- SCRIPTS -->
+	<!-- JQuery -->
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="js/tether.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="js/mdb.min.js"></script>
+
+	<!--<script src="/reload/reload.js"></script>-->
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+        var socket = io();
+
+
+        $('form').submit(function(){
+            socket.emit('chat message', $('#m').val());
+            $('#m').val('');
+            return false;
+        });
+        socket.on('homeScore', function(msg){
+            $( '#homeScore' ).html( msg );
+            $( '#homeScoreDisplay' ).html( msg );
+            console.log("msg: " + msg);
+        });
+        socket.on('guestScore', function(msg){
+            $( '#guestScore' ).html( msg );
+            $( '#guestScoreDisplay' ).html( msg );
+            console.log("msg: " + msg);
+        });
+
+
+//        socket.on('news', function (data) {
+//            console.log(data);
+//            socket.emit('my other event', { my: 'data' });
+//        });
+	</script>
+
+	<script>
+		$( function () {
+			autoRefresh_div();
+			$( '#bHomePlus' ).on( 'click', function ( e ) {
+				e.preventDefault();
+				$( '#bHomePlus' ).fadeOut( 300 );
+				var homeScore = parseInt( $( '#homeScore' ).html() ) + 1;
+				$( '#homeScore' ).html( homeScore );
+                console.log(homeScore);
+                socket.emit('homeScore', homeScore);
+				var guestScore = parseInt( $( '#guestScore' ).html() );
+				$( '#guestScore' ).html( guestScore );
+				$.ajax( {
+					url: 'http://scoreboardvb.com/_app/save.php',
+					type: 'post',
+					data: {
+						'homeScore': homeScore,
+						'guestScore': guestScore
+					},
+					success: function ( data, status ) {
+						$( '#jSuccess' ).html( '<p><em>Json Saved ' + $.now() + '</em></p>' );
+						$( '#bHomePlus' ).fadeIn( 300 );
+					},
+					error: function ( xhr, desc, err ) {
+						console.log( xhr );
+						console.log( "Details: " + desc + "\nError:" + err );
+					}
+				} ); // end ajax call
+			} );
+
+
+			$( '#bHomeMinus' ).on( 'click', function ( e ) {
+				e.preventDefault();
+				$( '#bHomeMinus' ).fadeOut( 300 );
+				var homeScore = parseInt( $( '#homeScore' ).html() ) - 1;
+				$( '#homeScore' ).html( homeScore );
+                socket.emit('homeScore', homeScore);
+				var guestScore = parseInt( $( '#guestScore' ).html() );
+				$( '#guestScore' ).html( guestScore );
+				$.ajax( {
+					url: 'http://scoreboardvb.com/_app/save.php',
+					type: 'post',
+					data: {
+						'homeScore': homeScore,
+						'guestScore': guestScore
+					},
+					success: function ( data, status ) {
+						$( '#jSuccess' ).html( '<p><em>Json Saved ' + $.now() + '</em></p>' );
+						$( '#bHomeMinus' ).fadeIn( 300 );
+					},
+					error: function ( xhr, desc, err ) {
+						console.log( xhr );
+						console.log( "Details: " + desc + "\nError:" + err );
+					}
+				} ); // end ajax call
+			} );
+
+
+			$( '#bGuestPlus' ).on( 'click', function ( e ) {
+				e.preventDefault();
+				$( '#bGuestPlus' ).fadeOut( 300 );
+				var homeScore = parseInt( $( '#homeScore' ).html() );
+				$( '#homeScore' ).html( homeScore );
+				var guestScore = parseInt( $( '#guestScore' ).html() ) + 1;
+				$( '#guestScore' ).html( guestScore );
+                socket.emit('guestScore', guestScore);
+				$.ajax( {
+					url: 'http://scoreboardvb.com/_app/save.php',
+					type: 'post',
+					data: {
+						'homeScore': homeScore,
+						'guestScore': guestScore
+					},
+					success: function ( data, status ) {
+						$( '#jSuccess' ).html( '<p><em>Json Saved ' + $.now() + '</em></p>' );
+						$( '#bGuestPlus' ).fadeIn( 300 );
+					},
+					error: function ( xhr, desc, err ) {
+						console.log( xhr );
+						console.log( "Details: " + desc + "\nError:" + err );
+					}
+				} ); // end ajax call
+			} );
+
+
+			$( '#bGuestMinus' ).on( 'click', function ( e ) {
+				e.preventDefault();
+				$( '#bGuestMinus' ).fadeOut( 300 );
+				var homeScore = parseInt( $( '#homeScore' ).html() );
+				$( '#homeScore' ).html( homeScore );
+				var guestScore = parseInt( $( '#guestScore' ).html() ) - 1;
+				$( '#guestScore' ).html( guestScore );
+                socket.emit('guestScore', guestScore);
+				$.ajax( {
+					url: 'http://scoreboardvb.com/_app/save.php',
+					type: 'post',
+					data: {
+						'homeScore': homeScore,
+						'guestScore': guestScore
+					},
+					success: function ( data, status ) {
+						$( '#jSuccess' ).html( '<p><em>Json Saved ' + $.now() + '</em></p>' );
+						$( '#bGuestMinus' ).fadeIn( 300 );
+					},
+					error: function ( xhr, desc, err ) {
+						console.log( xhr );
+						console.log( "Details: " + desc + "\nError:" + err );
+					}
+				} ); // end ajax call
+			} );
+
+
+			$( '#bSaveV' ).on( 'click', function ( e ) {
+				e.preventDefault();
+				var set = $( 'input[name=rSet]:checked' ).val();
+				var set1Winner = $( 'input[name=rSet1Winner]:checked' ).val();
+				var set2Winner = $( 'input[name=rSet2Winner]:checked' ).val();
+				var set3Winner = $( 'input[name=rSet3Winner]:checked' ).val();
+				var homeTeam = $( '#tHomeTeam' ).val();
+				var guestTeam = $( '#tGuestTeam' ).val();
+				console.log( set + ', ' + set1Winner + ', ' + set2Winner + ', ' + set3Winner + ', ' + homeTeam + ', ' + guestTeam );
+				$.ajax( {
+					url: 'http://scoreboardvb.com/_app/save2.php',
+					type: 'post',
+					data: {
+						'set': set,
+						'set1Winner': set1Winner,
+						'set2Winner': set2Winner,
+						'set3Winner': set3Winner,
+						'homeTeam': homeTeam,
+						'guestTeam': guestTeam
+					},
+					success: function ( data, status ) {
+						$( '#jSuccess2' ).html( '<p><em>Json Saved ' + $.now() + '</em></p>' );
+					},
+					error: function ( xhr, desc, err ) {
+						console.log( xhr );
+						console.log( "Details: " + desc + "\nError:" + err );
+					}
+				} ); // end ajax call
+			} );
+			
+			$( '#bResetScoreV' ).on( 'click', function ( e ) {
+				e.preventDefault();
+				var set = $( 'input[name=rSet]:checked' ).val();
+				var set1Winner = $( 'input[name=rSet1Winner]:checked' ).val();
+				var set2Winner = $( 'input[name=rSet2Winner]:checked' ).val();
+				var set3Winner = $( 'input[name=rSet3Winner]:checked' ).val();
+				var homeTeam = $( '#tHomeTeam' ).val();
+				var guestTeam = $( '#tGuestTeam' ).val();
+				var homeScore = "0";
+				var guestScore = "0";
+				console.log( homeTeam + ', ' + guestTeam );
+				$.ajax( {
+					url: 'http://scoreboardvb.com/_app/reset.php',
+					type: 'post',
+					data: {
+						'set': set,
+						'set1Winner': set1Winner,
+						'set2Winner': set2Winner,
+						'set3Winner': set3Winner,
+						'homeTeam': homeTeam,
+						'guestTeam': guestTeam,
+						'homeScore': homeScore,
+						'guestScore': guestScore
+					},
+					success: function ( data, status ) {
+						$( '#jSuccess2' ).html( '<p><em>Json Saved ' + $.now() + '</em></p>' );
+						location.reload();
+					},
+					error: function ( xhr, desc, err ) {
+						console.log( xhr );
+						console.log( "Details: " + desc + "\nError:" + err );
+					}
+				} ); // end ajax call
+			} );
+
+			
+			$( '#bResetMatchV' ).on( 'click', function ( e ) {
+				e.preventDefault();
+				var set = "1";
+				var set1Winner = "None";
+				var set2Winner = "None";
+				var set3Winner = "None";
+				var homeTeam = $( '#tHomeTeam' ).val();
+				var guestTeam = $( '#tGuestTeam' ).val();
+				var homeScore = parseInt( $( '#homeScore' ).html() );
+				//$( '#homeScore' ).html( homeScore );
+				var guestScore = parseInt( $( '#guestScore' ).html() );
+				//$( '#guestScore' ).html( guestScore );
+				console.log( set + ', ' + set1Winner + ', ' + set2Winner + ', ' + set3Winner + ', ' + homeTeam + ', ' + guestTeam );
+				$.ajax( {
+					url: 'http://scoreboardvb.com/_app/reset.php',
+					type: 'post',
+					data: {
+						'set': set,
+						'set1Winner': set1Winner,
+						'set2Winner': set2Winner,
+						'set3Winner': set3Winner,
+						'homeTeam': homeTeam,
+						'guestTeam': guestTeam,
+						'homeScore': homeScore,
+						'guestScore': guestScore
+					},
+					success: function ( data, status ) {
+						$( '#jSuccess2' ).html( '<p><em>Json Saved ' + $.now() + '</em></p>' );
+						location.reload();
+					},
+					error: function ( xhr, desc, err ) {
+						console.log( xhr );
+						console.log( "Details: " + desc + "\nError:" + err );
+					}
+				} ); // end ajax call
+			} );
+
+			
+			$( '#bResetTeamsV' ).on( 'click', function ( e ) {
+				e.preventDefault();
+				var set = $( 'input[name=rSet]:checked' ).val();
+				var set1Winner = $( 'input[name=rSet1Winner]:checked' ).val();
+				var set2Winner = $( 'input[name=rSet2Winner]:checked' ).val();
+				var set3Winner = $( 'input[name=rSet3Winner]:checked' ).val();
+				var homeTeam = "Home";
+				var guestTeam = "Guest";
+				var homeScore = parseInt( $( '#homeScore' ).html() );
+				//$( '#homeScore' ).html( homeScore );
+				var guestScore = parseInt( $( '#guestScore' ).html() );
+				//$( '#guestScore' ).html( guestScore );
+				console.log( set + ', ' + set1Winner + ', ' + set2Winner + ', ' + set3Winner + ', ' + homeTeam + ', ' + guestTeam );
+				$.ajax( {
+					url: 'http://scoreboardvb.com/_app/reset.php',
+					type: 'post',
+					data: {
+						'set': set,
+						'set1Winner': set1Winner,
+						'set2Winner': set2Winner,
+						'set3Winner': set3Winner,
+						'homeTeam': homeTeam,
+						'guestTeam': guestTeam,
+						'homeScore': homeScore,
+						'guestScore': guestScore
+					},
+					success: function ( data, status ) {
+						$( '#jSuccess2' ).html( '<p><em>Json Saved ' + $.now() + '</em></p>' );
+						location.reload();
+					},
+					error: function ( xhr, desc, err ) {
+						console.log( xhr );
+						console.log( "Details: " + desc + "\nError:" + err );
+					}
+				} ); // end ajax call
+			} );
+
+			
+			$( '#bResetAllV' ).on( 'click', function ( e ) {
+				e.preventDefault();
+				var set = "1";
+				var set1Winner = "None";
+				var set2Winner = "None";
+				var set3Winner = "None";
+				var homeTeam = "Home";
+				var guestTeam = "Guest";
+				var homeScore = "0";
+				var guestScore = "0";
+				console.log( set + ', ' + set1Winner + ', ' + set2Winner + ', ' + set3Winner + ', ' + homeTeam + ', ' + guestTeam );
+				$.ajax( {
+					url: 'http://scoreboardvb.com/_app/reset.php',
+					type: 'post',
+					data: {
+						'set': set,
+						'set1Winner': set1Winner,
+						'set2Winner': set2Winner,
+						'set3Winner': set3Winner,
+						'homeTeam': homeTeam,
+						'guestTeam': guestTeam,
+						'homeScore': homeScore,
+						'guestScore': guestScore
+					},
+					success: function ( data, status ) {
+						$( '#jSuccess2' ).html( '<p><em>Json Saved ' + $.now() + '</em></p>' );
+						location.reload();
+					},
+					error: function ( xhr, desc, err ) {
+						console.log( xhr );
+						console.log( "Details: " + desc + "\nError:" + err );
+					}
+				} ); // end ajax call
+			} );
+
+		} );
+
+
+		function autoRefresh_div() {
+			$.getJSON( "http://scoreboardvb.com/_app/_scoreboardV.json", function ( json ) {
+				$( "#homeScoreDisplay" ).html( json.scoreboardV[ 0 ].vHomeScore );
+                $( "#homeScore" ).html( json.scoreboardV[ 0 ].vHomeScore );
+				//console.log( 'json.scoreboardV[ 0 ].vHomeScore:' + json.scoreboardV[ 0 ].vHomeScore );
+				$( "#guestScoreDisplay" ).html( json.scoreboardV[ 0 ].vGuestScore );
+                $( "#guestScore" ).html( json.scoreboardV[ 0 ].vGuestScore );
+				//console.log( 'json.scoreboardV[ 0 ].vGuestScore:' + json.scoreboardV[ 0 ].vGuestScore );
+				$( '#homeTeam' ).html( json.scoreboardV[ 0 ].vHomeTeam );
+                $( '#tHomeTeam' ).val( json.scoreboardV[ 0 ].vHomeTeam );
+				$( '#guestTeam' ).html( json.scoreboardV[ 0 ].vGuestTeam );
+                $( '#tGuestTeam' ).val( json.scoreboardV[ 0 ].vGuestTeam );
+				var vSet = json.scoreboardV[ 0 ].vSet;
+				if (vSet == 1) {
+                    $("#rSet1").prop("checked", true);
+				} else if (vSet == 2) {
+                    $("#rSet2").prop("checked", true);
+				} else if (vSet == 3) {
+                    $("#rSet3").prop("checked", true);
+            	}
+				$( '#set' ).html( json.scoreboardV[ 0 ].vSet );
+				$( '#set1Winner' ).html( json.scoreboardV[ 0 ].vSet1Winner );
+                var set1Winner = json.scoreboardV[ 0 ].vSet1Winner;
+				if (set1Winner == "Home") {
+                    $("#rSet1WinnerHome").prop("checked", true);
+				} else if (set1Winner == "Guest") {
+                    $("#rSet1WinnerGuest").prop("checked", true);
+
+				} else {
+                    $("#rSet1WinnerNone").prop("checked", true);
+				}
+				$( '#set2Winner' ).html( json.scoreboardV[ 0 ].vSet2Winner );
+                var set2Winner = json.scoreboardV[ 0 ].vSet2Winner;
+                if (set2Winner == "Home") {
+                    $("#rSet2WinnerHome").prop("checked", true);
+                } else if (set2Winner == "Guest") {
+                    $("#rSet2WinnerGuest").prop("checked", true);
+
+                } else {
+                    $("#rSet2WinnerNone").prop("checked", true);
+                }
+				$( '#set3Winner' ).html( json.scoreboardV[ 0 ].vSet3Winner );
+                var set3Winner = json.scoreboardV[ 0 ].vSet3Winner;
+                if (set3Winner == "Home") {
+                    $("#rSet3WinnerHome").prop("checked", true);
+                } else if (set3Winner == "Guest") {
+                    $("#rSet3WinnerGuest").prop("checked", true);
+
+                } else {
+                    $("#rSet3WinnerNone").prop("checked", true);
+                }
+
+                //$("#rSet3").prop("checked", true);
+
+			} );
+			//setTimeout( autoRefresh_div, 500 );
+		}
+	</script>
+</body>
+</html>

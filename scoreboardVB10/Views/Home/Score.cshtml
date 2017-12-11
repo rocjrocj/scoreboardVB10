@@ -4,6 +4,49 @@
     ViewBag.Title = "Score";
 }
 
+
+
+<div class="container-fluid full-h">
+    <div class="row full-h">
+        <div class="col text-center blue text-white text-fluid full-h flex-center">
+            <div>
+                <div class="vTeamHea">Home Team</div>
+                <div class="vTeam">
+                    <span id="homeTeam">@Html.DisplayFor(model => model.HomeTeam)</span>
+                </div>
+                <div class="vScore">
+                    <span id="HomeScore2">@Html.DisplayFor(model => model.HomeTeamScore)</span>
+                </div>
+            </div>
+        </div>
+        <div class="col text-center red text-white text-fluid full-h flex-center">
+            <div>
+                <div class="vTeamHea">Guest Team</div>
+                <div class="vTeam">
+                    <span id="guestTeam">@Html.DisplayFor(model => model.GuestTeam)</span>
+                </div>
+                <div class="vScore">
+                    <span id="GuestScore2">@Html.DisplayFor(model => model.GuestTeamScore)</span>
+                </div>
+            </div>
+            <div class="fixed-action-btn smooth-scroll" style="position: absolute; bottom: 0px; right: 10px;">
+                <a class="z-depth-2z" href="#info">
+                    <i class="fa fa-info-circle white-text" aria-hidden="true" style="text-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="info" class="mb-1">
+        <div class="row mt-1">
+            <div class="col text-center">
+                <div class="vSet">Current Set: <span id="set">@Html.DisplayFor(model => model.SetNumber)</span></div>
+                <div class="vSetWinner grey-text">Set 1 Winner: <span id="set1Winner">@Html.DisplayFor(model => model.Set1Winner)</span> &nbsp;|&nbsp; Set 2 Winner: <span id="set2Winner">@Html.DisplayFor(model => model.Set2Winner)</span> &nbsp;|&nbsp; Set 3 Winner: <span id="set3Winner">@Html.DisplayFor(model => model.Set3Winner)</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <h2>Score</h2>
 
 <div class="container">
@@ -120,13 +163,15 @@
             //alert(message);
             if (team == "home") {
                 $('#HomeScore').text(message);
+                $('#HomeScore2').text(message);
             } else {
                 $('#GuestScore').text(message);
+                $('#GuestScore2').text(message);
             }
         };
 
         simple.client.addChatMessage = function (message) {
-            alert(message);
+            //alert(message);
             console.log(message);
         };
 

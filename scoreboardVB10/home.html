@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv=”Pragma” content=”no-cache”>
+	<meta http-equiv=”Expires” content=”-1″>
+	<meta http-equiv=”CACHE-CONTROL” content=”NO-CACHE”>
+	<title>scoreboardV</title>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+	<!-- Bootstrap core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="css/mdb.min.css" rel="stylesheet">
+	<!-- Your custom styles (optional) -->
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<!-- Start your project here-->
+
+	<!--Navbar-->
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+		<div class="container">
+			<a class="navbar-brand" href="#"><strong>MDB</strong></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Link</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Profile</a>
+					</li>
+				</ul>
+				<form class="form-inline">
+					<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+				</form>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container-fluid full-h">
+		<div class="row full-h">
+			<div class="col text-center purple lighten-2 text-fluid full-h flex-center">
+				<div>
+					<div class="vTeamHea">Home Team</div>
+					<div class="vTeam">
+						<span id="homeTeamz">ScoreboardVB</span>
+					</div>
+					<div class="vScore">
+						<div><img src="https://png.icons8.com/volleyball/ios7/400/f3e5f5"></div>
+						<span id="homeScorez"></span>
+					</div>
+				</div>
+			</div>
+			<!--<div class="col text-center red text-white text-fluid full-h flex-center">
+				<div>
+					<div class="vTeamHea">Guest Team</div>
+					<div class="vTeam">
+						<span id="guestTeam"></span>
+					</div>
+					<div class="vScore">
+						<span id="guestScore"></span>
+					</div>
+				</div>
+				<div class="fixed-action-btn smooth-scroll" style="position: absolute; bottom: 0px; right: 10px;">
+					<a class="z-depth-2z" href="#info">
+						<i class="fa fa-info-circle white-text" aria-hidden="true" style="text-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);"></i>
+					</a>
+				</div>
+			</div>-->
+		</div>
+		
+		<!--<div id="info" class="mb-1">
+			<div class="row mt-1">
+				<div class="col text-center">
+					<div class="vSet">Current Set: <span id="set"></span></div>
+					<div class="vSetWinner grey-text">Set 1 Winner: <span id="set1Winner"></span> &nbsp;|&nbsp; Set 2 Winner: <span id="set2Winner"></span> &nbsp;|&nbsp; Set 3 Winner: <span id="set3Winner"></span></div>
+				</div>
+			</div>
+		</div>-->
+	</div>
+
+	<!-- /Start your project here-->
+	<!-- SCRIPTS -->
+	<!-- JQuery -->
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="js/tether.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Underscore -->
+    <script type="text/javascript" src="js/underscore-min.js"></script>
+
+	<!--<script src="/reload/reload.js"></script>-->
+
+	<!-- socket.io -->
+	<script src="/socket.io/socket.io.js"></script>
+
+	<script>
+
+        new WOW().init();
+
+		$( function () {
+			autoRefresh_div();
+		} );
+
+		var homeTeam;
+        var homeScore;
+        var guestTeam;
+        var guestScore;
+
+		function autoRefresh_div() {
+			//$.getJSON( "http://vbscore11/rest/views/vb-scores/1", function ( json ) {
+            $.getJSON( "http://scoreboardvb.com/_app/_scoreboardV.json", function ( json ) {
+            //$.getJSON( "_app/_scoreboardV.json", function ( json ) {
+			    //alert("hello world");
+			    console.log(json);
+				$( "#homeScore" ).html( json.scoreboardV[ 0 ].vHomeScore );
+				console.log( 'json.[ 0 ].vHomeScore.[ 0 ]:' + json.scoreboardV[ 0 ].vHomeScore );
+                homeScore = json.scoreboardV[ 0 ].vHomeScore;
+				$( "#guestScore" ).html( json.scoreboardV[ 0 ].vGuestScore );
+                guestScore = json.scoreboardV[ 0 ].vGuestScore;
+				$( '#homeTeam' ).html( json.scoreboardV[ 0 ].vHomeTeam );
+                homeTeam = json.scoreboardV[ 0 ].vHomeTeam;
+				$( '#guestTeam' ).html( json.scoreboardV[ 0 ].vGuestTeam );
+                guestTeam = json.scoreboardV[ 0 ].vGuestTeam
+				$( '#set' ).html( json.scoreboardV[ 0 ].vSet );
+				$( '#set1Winner' ).html( json.scoreboardV[ 0 ].vSet1Winner );
+				$( '#set2Winner' ).html( json.scoreboardV[ 0 ].vSet2Winner );
+				$( '#set3Winner' ).html( json.scoreboardV[ 0 ].vSet3Winner );
+
+                jData = 'jData: homeTeam - ' + homeTeam + ', homeScore - ' + homeScore + ', guestTeam - ' + guestTeam + ', guestScore - ' + guestScore;
+                console.log("jData: " + jData);
+			} );
+			//setTimeout( autoRefresh_div, 500 );
+		}
+
+
+        var socket = io();
+        $('form').submit(function(){
+            //socket.emit('chat message', $('#m').val());
+            socket.emit('chat message', jData);
+            $('#m').val('');
+            return false;
+        });
+
+
+        socket.on('homeScore', function(msg){
+            $( '#homeScore' ).html( msg );
+            $( '#homeScoreDisplay' ).html( msg );
+            console.log("msg: " + msg);
+        });
+        socket.on('guestScore', function(msg){
+            $( '#guestScore' ).html( msg );
+            $( '#guestScoreDisplay' ).html( msg );
+            console.log("msg: " + msg);
+        });
+
+		// Popovers Initialization
+		$(function () {
+		  $('[data-toggle="popover"]').popover()
+		})
+
+	</script>
+</body>
+
+</html>
