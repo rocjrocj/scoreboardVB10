@@ -63,5 +63,29 @@ namespace scoreboardVB10.Controllers
             }
             return View(scoreboardVBModels);
         }
+
+        // POST: Home/KeepScore/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult KeepScore([Bind(Include = "Id,MatchName,HomeTeam,HomeTeamScore,GuestTeam,GuestTeamScore,Set1Winner,Set2Winner,Set3Winner,MatchDateTime,SetNumber")] ScoreboardVBModels scoreboardVBModels)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(scoreboardVBModels).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(scoreboardVBModels);
+        }
+
+        public ActionResult Entity()
+        {
+            ViewBag.red = "You get what you give.";
+            
+            var list = db.ScoreboardVBModels;
+            return View(list);
+        }
     }
 }

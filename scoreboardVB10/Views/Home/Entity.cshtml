@@ -1,0 +1,25 @@
+﻿@model IEnumerable<scoreboardVB10.Models.ScoreboardVBModels>
+
+@{ 
+    //var vb = scoreboardVB10.Models.ScoreboardVBModels
+}
+
+@{
+    ViewBag.Title = "Entity";
+    ViewBag.opp = "You know me.";
+}
+
+<h2>Entity</h2>
+
+<p>@ViewBag.red</p>
+<p>@ViewBag.opp</p>
+
+<ul>
+    @*@foreach (var item in Model)
+    {
+        <li>@Html.DisplayFor(modelItem => item.HomeTeam)</li>
+        <li>@item.HomeTeam</li>
+    }*@
+    @*<li>@model.HomeTeam[1]</li>*@
+</ul>
+

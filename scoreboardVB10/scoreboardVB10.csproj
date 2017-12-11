@@ -296,6 +296,8 @@
     <Content Include="Views\Home\Score.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Home\KeepScore.cshtml" />
+    <Content Include="Views\Home\Entity.cshtml" />
+    <Content Include="Views\Home\_single.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
