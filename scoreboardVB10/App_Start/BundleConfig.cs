@@ -27,8 +27,7 @@ namespace scoreboardVB10
                       "~/js/mdb.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/css/bootstrap.css"));
 
             bundles.Add(new StyleBundle("~/css").Include(
                       "~/css/mdb.min.css",

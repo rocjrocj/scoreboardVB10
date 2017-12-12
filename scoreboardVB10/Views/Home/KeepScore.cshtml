@@ -4,18 +4,18 @@
     ViewBag.Title = "KeepScore";
 }
 
-<h2>Keep Score</h2>
 
 
 
     <div class="container">
+        <h2>Keep Score</h2>
         <div class="row">
-            <div class="col-md-4"><h3>Home Score</h3></div>
+            <div class="col-md-4">Home Score</div>
             <div class="col-md-4" id="HomeScore">@Html.DisplayFor(model => model.HomeTeamScore)</div>
             <div class="col-md-4"><button id="HomeScoreMinus">-</button> <button id="HomeScorePlus">+</button>@*<button id="HomeScorePlus" onclick="javascript: doScore('HomeScore', 'p')">+</button>*@</div>
         </div>
         <div class="row">
-            <div class="col-md-4"><h3>Guest Score</h3></div>
+            <div class="col-md-4">Guest Score</div>
             <div class="col-md-4" id="GuestScore">@Html.DisplayFor(model => model.GuestTeamScore)</div>
             <div class="col-md-4"><button id="GuestScoreMinus">-</button> <button id="GuestScorePlus">+</button></div>
         </div>

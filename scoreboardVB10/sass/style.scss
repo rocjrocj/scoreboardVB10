@@ -2,8 +2,9 @@
 
 
 html, body {
-	height: 100%;
-	font-size: 100%;
+    height: 100%;
+    font-size: 100%;
+    /*font-size: 26px;*/
 }
 
 .font-purple {
@@ -15,7 +16,16 @@ html, body {
 }
 
 
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
 
+    > .col,
+    > [class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
 
 
 
@@ -77,23 +87,23 @@ h5 {
 
 .vTeamHea {
 	font-size: 100%;
-	color: #f3e5f5;
+	/*color: #f3e5f5;*/
 }
 .vTeam {
 	font-size: 200%;
-	color: #f3e5f5;
+	/*color: #f3e5f5;*/
 }
 .vScore {
 	font-size: 500%;
-	color: #f3e5f5;
+	/*color: #f3e5f5;*/
 }
 .vSet {
 	font-size: 100%;
-	color: #f3e5f5;
+	/*color: #f3e5f5;*/
 }
 .vSetWinner {
 	font-size: 80%;
-	color: #f3e5f5;
+	/*color: #f3e5f5;*/
 }
 
 
@@ -101,7 +111,7 @@ h5 {
 @media (min-width: 576px) {
 	.vTeamHea {
 		font-size: 100%;
-		color: #f3e5f5;
+		/*color: #f3e5f5;*/
 	}
 	.vTeam {
 		font-size: 200%;
@@ -113,7 +123,7 @@ h5 {
 		font-size: 130%;
 	}
 	.vSetWinner {
-		font-size: 80%;
+		font-size: 50%;
 	}
 }
 
@@ -121,7 +131,7 @@ h5 {
 @media (min-width: 768px) {
 	.vTeamHea {
 		font-size: 100%;
-		color: #f3e5f5;
+		/*color: #f3e5f5;*/
 	} 
 	.vTeam {
 		font-size: 300%;
@@ -130,7 +140,7 @@ h5 {
 		font-size: 800%;
 	}
 	.vSetWinner {
-		font-size: 100%;
+		font-size: 70%;
 	}
 }
 
@@ -138,7 +148,7 @@ h5 {
 @media (min-width: 992px) {
 	.vTeamHea {
 		font-size: 100%;
-		color: #f3e5f5;
+		/*color: #f3e5f5;*/
 	} 
 	.vTeam {
 		font-size: 300%;
@@ -152,7 +162,7 @@ h5 {
 @media (min-width: 1200px) { 
 	.vTeamHea {
 		font-size: 100%;
-		color: #f3e5f5;
+		/*color: #f3e5f5;*/
 	} 
 	.vTeam {
 		font-size: 300%;

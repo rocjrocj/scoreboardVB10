@@ -4,11 +4,9 @@
     ViewBag.Title = "Score";
 }
 
-
-
-<div class="container-fluid full-h">
-    <div class="row full-h">
-        <div class="col text-center blue text-white text-fluid full-h flex-center">
+<div class="container-fluidz full-h">
+    <div class="row no-gutters full-h">
+        <div class="col-md-6 text-center blue text-white text-fluid full-h flex-center">
             <div>
                 <div class="vTeamHea">Home Team</div>
                 <div class="vTeam">
@@ -19,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="col text-center red text-white text-fluid full-h flex-center">
+        <div class="col-md-6 text-center red text-white text-fluid full-h flex-center">
             <div>
                 <div class="vTeamHea">Guest Team</div>
                 <div class="vTeam">
@@ -38,8 +36,8 @@
     </div>
 
     <div id="info" class="mb-1">
-        <div class="row mt-1">
-            <div class="col text-center">
+        <div class="row no-gutters mt-1">
+            <div class="col-md text-center">
                 <div class="vSet">Current Set: <span id="set">@Html.DisplayFor(model => model.SetNumber)</span></div>
                 <div class="vSetWinner grey-text">Set 1 Winner: <span id="set1Winner">@Html.DisplayFor(model => model.Set1Winner)</span> &nbsp;|&nbsp; Set 2 Winner: <span id="set2Winner">@Html.DisplayFor(model => model.Set2Winner)</span> &nbsp;|&nbsp; Set 3 Winner: <span id="set3Winner">@Html.DisplayFor(model => model.Set3Winner)</span></div>
             </div>
@@ -47,109 +45,6 @@
     </div>
 </div>
 
-<h2>Score</h2>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6"><h3>Home Score</h3></div>
-        <div class="col-md-6" id="HomeScore">@Html.DisplayFor(model => model.HomeTeamScore)</div>
-    </div>
-    <div class="row">
-        <div class="col-md-6"><h3>Guest Score</h3></div>
-        <div class="col-md-6" id="GuestScore">@Html.DisplayFor(model => model.GuestTeamScore)</div>
-    </div>
-</div>
-
-<div>
-    <h4>ScoreboardVBModels</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MatchName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MatchName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HomeTeam)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HomeTeam)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HomeTeamScore)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HomeTeamScore)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GuestTeam)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GuestTeam)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GuestTeamScore)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GuestTeamScore)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Set1Winner)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Set1Winner)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Set2Winner)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Set2Winner)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Set3Winner)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Set3Winner)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MatchDateTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MatchDateTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SetNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SetNumber)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")*@
-</p>
 
 
 
