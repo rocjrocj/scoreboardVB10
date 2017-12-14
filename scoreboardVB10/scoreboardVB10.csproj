@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
@@ -131,12 +137,6 @@
     <Reference Include="System.Web.Http.WebHost">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -206,8 +206,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ScoreboardVBModels1Controller.cs" />
+    <Compile Include="Controllers\ScoreboardVBModels2Controller.cs" />
     <Compile Include="Controllers\ScoreboardVBModelsApiController.cs" />
     <Compile Include="Controllers\ScoreboardVBModelsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -221,10 +224,33 @@
     <Compile Include="Migrations\201712122123413_AddedAnnotations.Designer.cs">
       <DependentUpon>201712122123413_AddedAnnotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712122152179_AddedAnnotations1.cs" />
+    <Compile Include="Migrations\201712122152179_AddedAnnotations1.Designer.cs">
+      <DependentUpon>201712122152179_AddedAnnotations1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712131906490_AddAlbums.cs" />
+    <Compile Include="Migrations\201712131906490_AddAlbums.Designer.cs">
+      <DependentUpon>201712131906490_AddAlbums.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712131945448_AddCreatedDate.cs" />
+    <Compile Include="Migrations\201712131945448_AddCreatedDate.Designer.cs">
+      <DependentUpon>201712131945448_AddCreatedDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Album.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ScoreboardVBModels.cs" />
     <Compile Include="Models\SvbMatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -306,6 +332,14 @@
     <Content Include="js\modules %28optional%29\waves.js" />
     <Content Include="js\modules %28optional%29\wow.js" />
     <Content Include="js\popper.min.js" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
     <Content Include="score.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -475,6 +509,21 @@
     <Content Include="Views\Home\Entity.cshtml" />
     <Content Include="Views\Home\_single.cshtml" />
     <Content Include="Views\Home\HomeTest.cshtml" />
+    <Content Include="Views\ScoreboardVBModels1\Create.cshtml" />
+    <Content Include="Views\ScoreboardVBModels1\Delete.cshtml" />
+    <Content Include="Views\ScoreboardVBModels1\Details.cshtml" />
+    <Content Include="Views\ScoreboardVBModels1\Edit.cshtml" />
+    <Content Include="Views\ScoreboardVBModels1\Index.cshtml" />
+    <Content Include="Views\Albums\Create.cshtml" />
+    <Content Include="Views\Albums\Delete.cshtml" />
+    <Content Include="Views\Albums\Details.cshtml" />
+    <Content Include="Views\Albums\Edit.cshtml" />
+    <Content Include="Views\Albums\Index.cshtml" />
+    <Content Include="Views\ScoreboardVBModels2\Create.cshtml" />
+    <Content Include="Views\ScoreboardVBModels2\Delete.cshtml" />
+    <Content Include="Views\ScoreboardVBModels2\Details.cshtml" />
+    <Content Include="Views\ScoreboardVBModels2\Edit.cshtml" />
+    <Content Include="Views\ScoreboardVBModels2\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -499,6 +548,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712122123413_AddedAnnotations.resx">
       <DependentUpon>201712122123413_AddedAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712122152179_AddedAnnotations1.resx">
+      <DependentUpon>201712122152179_AddedAnnotations1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712131906490_AddAlbums.resx">
+      <DependentUpon>201712131906490_AddAlbums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712131945448_AddCreatedDate.resx">
+      <DependentUpon>201712131945448_AddCreatedDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

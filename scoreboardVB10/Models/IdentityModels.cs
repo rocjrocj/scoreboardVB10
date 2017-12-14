@@ -31,5 +31,7 @@ namespace scoreboardVB10.Models
         }
 
         public System.Data.Entity.DbSet<scoreboardVB10.Models.ScoreboardVBModels> ScoreboardVBModels { get; set; }
+
+        public System.Data.Entity.DbSet<scoreboardVB10.Models.Album> Albums { get; set; }
     }
 }

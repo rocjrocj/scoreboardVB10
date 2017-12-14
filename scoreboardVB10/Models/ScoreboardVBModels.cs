@@ -27,5 +27,7 @@ namespace scoreboardVB10.Models
         public byte[] MatchDateTime { get; set; }
         [DefaultValue(1)]
         public int SetNumber { get; set; }
+        [Timestamp]
+        public byte[] CreatedDate { get; set; }
     }
 }
