@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<scoreboardVB10.Models.ScoreboardVBModels>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeTest</title>
+    @Styles.Render("~/Content/css")
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    @Styles.Render("~/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div> 
+        <h1>Welcome</h1>
+        <p>@ViewBag.Message</p>
+
+        <h3>Current Matches</h3>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>@Html.ActionLink(@item.MatchName, "Score", new { Id = item.Id })</li>
+            }
+        </ul>
+
+        @Html.ActionLink("Join Existing Match", "Score", new { Id = 2 }) | 
+        @Html.ActionLink("Create New Match", "../ScoreboardVBModels/Create") | 
+        <a href="~/Views/Home/Contact.cshtml">Just a normal link</a> | 
+        @Html.ActionLink("Link Name", "Create", "ScoreboardVBModels") |
+        @Html.ActionLink("Edit Existing Match", "Index", "ScoreboardVBModels")
+    </div>
+    <div>@Html.Partial("_LoginPartial")</div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/mdb")
+</body>
+</html>
